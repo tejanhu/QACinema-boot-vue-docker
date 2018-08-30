@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootVueDockerApplication {
+public class QACinemaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootVueDockerApplication.class, args);
+		SpringApplication.run(QACinemaApplication.class, args);
 	}
 }
