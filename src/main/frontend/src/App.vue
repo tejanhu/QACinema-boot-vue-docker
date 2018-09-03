@@ -1,17 +1,19 @@
 <template>
   <div id="app">
   <h1>Spring Boot + Vue.js + Docker Example</h1>
-    <hello></hello>
+    <!--<hello></hello>-->
+    <about></about>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+// import Hello from './components/Hello'
+import About from './components/About'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    About
   }
 }
 </script>
