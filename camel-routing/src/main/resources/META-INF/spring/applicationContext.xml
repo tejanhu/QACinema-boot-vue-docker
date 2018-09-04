@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	   xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+	   xmlns:jdbc="http://www.springframework.org/schema/c">
+
+	<cxf:rsServer id="restService" address="http://localhost:9000/user"
+				  serviceClass="org.qacinema.beans.EmployeeServiceResource">
+	</cxf:rsServer>
+
+    <cxf:rsServer id="emailService" address="http://localhost:9000/email"
+                  serviceClass="org.qacinema.beans.EMailServiceResource">
+    </cxf:rsServer>
+
+
+	<bean id="myDataSource" name="myDataSource"
+		  class="org.apache.commons.dbcp.BasicDataSource"  >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/user" />
+		<property name="username" value="user" />
+		<property name="password" value="user_pass" />
+	</bean>
+
+
+	<bean id="sqlComponent" class="org.apache.camel.component.sql.SqlComponent">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+
+	<bean id="myRoute" class="org.qacinema.beans.EmployeeServiceRouteBuilder">
+	</bean>
+    <bean id="emailRoute" class="org.qacinema.beans.EMailServiceRouteBuilder">
+    </bean>
+
+	<camelContext id="camelId" xmlns="http://camel.apache.org/schema/spring">
+
+        <routeBuilder ref="myRoute" />
+        <routeBuilder ref="emailRoute"/>
+
+	</camelContext>
+
+</beans>
