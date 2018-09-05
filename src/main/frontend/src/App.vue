@@ -2,16 +2,18 @@
   <div id="app">
   <h1>Spring Boot + Vue.js + Docker Example</h1>
     <navbar></navbar>
+    <footer></footer>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar, Footer
   }
 }
 </script>
