@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-  <h1>Spring Boot + Vue.js + Docker Example</h1>
     <!--<hello></hello>-->
     <!--<about></about>-->
+
+    <navbar></navbar>
     <contact></contact>
+
   </div>
 </template>
 
 <script>
 // import Hello from './components/Hello'
-// import About from './components/About'
+import Navbar from './components/Navbar'
 import Contact from './components/Contact'
+// import About from './components/About'
 
 export default {
   name: 'app',
   components: {
-    Contact
+    Navbar, Contact
   }
 }
 </script>
