@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-  <h1>Spring Boot + Vue.js + Docker Example</h1>
     <navbar></navbar>
     <footer></footer>
   </div>
