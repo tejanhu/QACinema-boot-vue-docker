@@ -36,16 +36,200 @@ public class MovieDataController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    private MovieDataController controller;
+
    @Autowired
    private Gson gson;
 
-    @RequestMapping("getUpAndComingImagePaths")
-    public List<String> getUpAndComingMoviesImagePaths() throws IOException {
-        BufferedReader in;
-        StringBuffer response = null;
+   @RequestMapping("getMoviesNowPlayingImagePaths/{imageNumber}")
+       public String getNowPlayingImagePaths (@PathVariable int imageNumber){
+       StringBuffer response = new StringBuffer();
 
+       response = getNowPlayingStringBuffer(response);
+       log.info(response.toString());
+
+       JsonParser parser = new JsonParser();
+       JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
+
+       JsonArray jsonArray = (JsonArray) jsonObject.get("results");
+
+
+       List<String> pathList = new ArrayList<>();
+       imagePathRequest(jsonArray, pathList);
+       return "\""+pathList.get(imageNumber)+"\"";
+   }
+   @RequestMapping("getMoviesNowPlayingDetails/{movieNumber}")
+    public String getNowPlayingDetails(@PathVariable int movieNumber){
+
+       StringBuffer response = new StringBuffer();
+
+       response = getNowPlayingStringBuffer(response);
+       log.info(response.toString());
+
+       JsonParser parser = new JsonParser();
+       JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
+
+       JsonArray jsonArray = (JsonArray) jsonObject.get("results");
+
+       List<String> titleList = new ArrayList<>();
+       List<String> overviewList = new ArrayList<>();
+       List<String> voteCountList = new ArrayList<>();
+       List<String> ratingList = new ArrayList<>();
+       for (int i = 0; i < jsonArray.size(); i++) {
+
+           JsonObject movieObj = (JsonObject) jsonArray.get(i);
+           String titleString = movieObj.get("title").toString();
+           String overviewString = movieObj.get("overview").toString();
+           String voteCountString = movieObj.get("vote_count").toString();
+           String averageRatingString = movieObj.get("vote_average").toString();
+
+           titleList.add(titleString);
+           overviewList.add(overviewString);
+           voteCountList.add(voteCountString);
+           ratingList.add(averageRatingString);
+
+       }
+       return titleList.get(movieNumber)+overviewList.get(movieNumber)+"\n\""+"Number of Votes:"+voteCountList.get(movieNumber)+"\nAverage Rating:"+ratingList.get(movieNumber)+"\"";
+   }
+
+   @RequestMapping("getMoviesNowPlayingFullDetails/{movieNumber}")
+   public List<String> getNowPlayingFullDetails(@PathVariable int movieNumber){
+
+       StringBuffer response = new StringBuffer();
+
+       response = getNowPlayingStringBuffer(response);
+       log.info(response.toString());
+
+       JsonParser parser = new JsonParser();
+       JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
+
+       JsonArray jsonArray = (JsonArray) jsonObject.get("results");
+       List<String> movieIdList = new ArrayList<>();
+       for(int i = 0; i < jsonArray.size(); i++){
+           JsonObject movieObj = (JsonObject) jsonArray.get(i);
+           String movieIds = movieObj.get("id").toString();
+
+           movieIdList.add(movieIds);
+       }
+       BufferedReader backIn;
+       StringBuffer finalResponse = null;
+       try{
+           String returnUrl = "https://api.themoviedb.org/3/movie/"+movieIdList.get(movieNumber)+"?api_key=xxxx";
+           URL returnObj = new URL(returnUrl);
+           HttpURLConnection connection2 = (HttpURLConnection) returnObj.openConnection();
+           connection2.setRequestMethod("GET");
+           int responseCode2 = connection2.getResponseCode();
+           log.info("\nSending Get Request to URL:" + returnUrl);
+           log.info("Response Code:" +responseCode2);
+
+           backIn = new BufferedReader(
+                   new InputStreamReader(connection2.getInputStream()));
+           String inputLine2;
+
+           finalResponse = new StringBuffer();
+
+           while((inputLine2 = backIn.readLine()) != null){
+               finalResponse.append(inputLine2);
+           }
+           backIn.close();
+
+       } catch(IOException e){
+           e.printStackTrace();
+       }
+        List<String> movieDetails = new ArrayList<>();
+       movieDetails.add(finalResponse.toString());
+       return movieDetails;
+       }
+
+    private void imagePathRequest(JsonArray jsonArray, List<String> pathList) {
+        for (int i = 0; i < jsonArray.size(); i++) {
+
+            JsonObject movieObj = (JsonObject) jsonArray.get(i);
+            String pathString = movieObj.get("poster_path").toString();
+            String quotesRemovedString = pathString.replaceAll("^\"|\"$", "");
+            String returnUrl = Constants.IMAGEPATHREQUEST + quotesRemovedString;
+            pathList.add(returnUrl);
+        }
+    }
+
+    @RequestMapping("getUpAndComingImagePaths/{imageNumber}")
+    public String getUpAndComingMoviesImagePaths(@PathVariable int imageNumber){
+
+        StringBuffer response = new StringBuffer();
+
+        response = getUpAndComingStringBuffer(response);
+        log.info(response.toString());
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
+
+        JsonArray jsonArray = (JsonArray) jsonObject.get("results");
+
+
+            List<String> pathList = new ArrayList<>();
+            imagePathRequest(jsonArray, pathList);
+            return "\""+pathList.get(imageNumber)+"\"";
+    }
+
+    @RequestMapping("getUpAndComingMovieDetails/{movieNumber}")
+    public String getUpAndComingDetails(@PathVariable int movieNumber){
+
+        StringBuffer response = new StringBuffer();
+
+        response = getUpAndComingStringBuffer(response);
+        log.info(response.toString());
+
+        JsonParser parser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
+
+        JsonArray jsonArray = (JsonArray) jsonObject.get("results");
+
+        List<String> titleList = new ArrayList<>();
+        List<String> overviewList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.size(); i++) {
+
+            JsonObject movieObj = (JsonObject) jsonArray.get(i);
+            String titleString = movieObj.get("title").toString();
+            String overviewString = movieObj.get("overview").toString();
+
+            titleList.add(titleString);
+            overviewList.add(overviewString);
+        }
+        return titleList.get(movieNumber)+"\n"+"\n"+overviewList.get(movieNumber);
+    }
+
+    private StringBuffer getUpAndComingStringBuffer(StringBuffer response) {
+        BufferedReader in;
         try {
-            String upAndComingUrl = Constants.MOVIEUPANDCOMINGREQUEST;
+        String upAndComingUrl = Constants.MOVIEUPANDCOMINGREQUEST;
+
+        URL obj = new URL(upAndComingUrl);
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("GET");
+        int responseCode = connection.getResponseCode();
+        log.info("\nSending Get Request to URL:" + upAndComingUrl);
+        log.info("Response COde:" + responseCode);
+
+        in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+
+        response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+        return response;
+}
+    private StringBuffer getNowPlayingStringBuffer(StringBuffer response){
+        BufferedReader in;
+        try {
+            String upAndComingUrl = Constants.MOVIENOWPLAYINGREQUEST;
 
             URL obj = new URL(upAndComingUrl);
             HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
@@ -68,24 +252,7 @@ public class MovieDataController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        log.info(response.toString());
-
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parser.parse(response.toString());
-
-        JsonArray jsonArray = (JsonArray) jsonObject.get("results");
-
-            String returnUrl = "";
-            List<String> pathList = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++) {
-
-            JsonObject movieObj = (JsonObject) jsonArray.get(i);
-            String pathString = movieObj.get("poster_path").toString();
-            String quotesRemovedString = pathString.replaceAll("^\"|\"$", "");
-            returnUrl = Constants.IMAGEPATHREQUEST + quotesRemovedString;
-            pathList.add(returnUrl);
-        }
-        return pathList;
+        return response;
     }
 
     @RequestMapping("movie/search/{movieTitle}")
