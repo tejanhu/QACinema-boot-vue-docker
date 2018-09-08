@@ -3,33 +3,50 @@
 
       <h1>New Releases</h1>
 
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-      <div>9</div>
-      <div>10</div>
-      <div>11</div>
-      <div>12</div>
-      <div>13</div>
-      <div>14</div>
-      <div>15</div>
-      <div>16</div>
-      <div>17</div>
-      <div>18</div>
-      <div>19</div>
-      <div>20</div>
+      <div class="row">
+        <div class="col-md-4" v-for="thumb in thumbs">
+          <div class="thumb">
+            <img v-bind:src="thumb.url" />
+          </div>
+        </div>
+      </div>
 
     </div>
 </template>
 
 <script>
     export default {
-      name: 'UpandComingMovies'
+      name: 'UpandComingMovies',
+      data: function () {
+        return {
+          thumbs: [
+            {
+              publidId: 'afdZAIcAQscziqVtsEoh2PwsYTW',
+              url: 'https://image.tmdb.org/t/p/w500/afdZAIcAQscziqVtsEoh2PwsYTW.jpg'
+            },
+            {
+              publidId: 'sFC1ElvoKGdHJIWRpNB3xWJ9lJA',
+              url: 'https://image.tmdb.org/t/p/w500/sFC1ElvoKGdHJIWRpNB3xWJ9lJA.jpg'
+            },
+            {
+              publidId: '8fDtXi6gVw8WUMWGT9XFz7YwkuE',
+              url: 'https://image.tmdb.org/t/p/w500/8fDtXi6gVw8WUMWGT9XFz7YwkuE.jp'
+            },
+            {
+              publidId: '5LYSsOPzuP13201qSzMjNxi8FxN',
+              url: 'https://image.tmdb.org/t/p/w500/5LYSsOPzuP13201qSzMjNxi8FxN.jpg'
+            },
+            {
+              publidId: 'x1txcDXkcM65gl7w20PwYSxAYah',
+              url: 'https://image.tmdb.org/t/p/w500/x1txcDXkcM65gl7w20PwYSxAYah.jpg'
+            },
+            {
+              publidId: '80R9mbC0cJhasCSUgy1OSpcaTDI',
+              url: 'https://image.tmdb.org/t/p/w500/80R9mbC0cJhasCSUgy1OSpcaTDI.jpg'
+            }
+          ]
+        }
+      }
     }
 </script>
 
