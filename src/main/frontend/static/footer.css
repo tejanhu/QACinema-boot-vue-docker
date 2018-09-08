@@ -1,5 +1,12 @@
+section {
+  padding: 60px 0;
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
 #footer {
-  background: #f5f5f5 !important;
+  background: #007b5e !important;
   /*position: fixed;*/
   width: 100%;
   /*bottom: 0;*/
