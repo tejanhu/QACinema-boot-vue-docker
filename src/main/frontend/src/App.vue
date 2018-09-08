@@ -1,7 +1,6 @@
 <template>
   <div id="app" v-bind:style="bgc">
     <navbar></navbar>
-    <router-view></router-view>
     <UpandComingMovies></UpandComingMovies>
   </div>
 </template>
