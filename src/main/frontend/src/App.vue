@@ -2,16 +2,18 @@
   <div id="app" v-bind:style="bgc">
     <navbar></navbar>
     <router-view></router-view>
+    <UpandComingMovies></UpandComingMovies>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
+import UpandComingMovies from './components/new-releases/UpandComingMovies'
 
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar, UpandComingMovies
   }
 }
 </script>
