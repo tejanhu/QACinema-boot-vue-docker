@@ -1,7 +1,6 @@
 package com.qa.application.cinemaapp.controller;
 
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -35,11 +34,6 @@ public class MovieDataController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
-    private MovieDataController controller;
-
-   @Autowired
-   private Gson gson;
 
    @RequestMapping("getMoviesNowPlayingImagePaths/{imageNumber}")
        public String getNowPlayingImagePaths (@PathVariable int imageNumber){
