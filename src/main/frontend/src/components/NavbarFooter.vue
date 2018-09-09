@@ -34,10 +34,10 @@
             <ul class="list-unstyled list-inline social text-center">
               <li class="list-inline-item"><a>Follow Us:
               </a></li>
-              <li class="list-inline-item"><a><i class="fa fa-facebook-f fa-2x mb-3" aria-hidden="true"></i>
+              <li class="list-inline-item"><a href="#"><i class="fa fa-facebook-f fa-2x mb-3" aria-hidden="true"></i>
               </a></li>
-              <li class="list-inline-item"><a><i class="fa fa-twitter fa-2x mb-3"></i></a></li>
-              <li class="list-inline-item"><a><i class="fa fa-instagram fa-2x mb-3"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x mb-3"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x mb-3"></i></a></li>
             </ul>
           </div>
         </div>
