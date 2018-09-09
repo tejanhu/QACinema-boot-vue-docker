@@ -1,14 +1,14 @@
 <template>
   <div>
-    <section id="footer" class="bg-info">
+    <section id="footer" class="bg-info footer">
       <div class="container">
         <div class="row text-center text-xs-center text-sm-left text-md-left">
           <div class="col-xs-12 col-sm-4 col-md-4">
             <h5>About</h5>
             <ul class="list-unstyled quick-links">
-              <li><a><i class="fa fa-angle-double-right"></i>About Us</a></li>
-              <li><a><i class="fa fa-angle-double-right"></i>Opening Hours</a></li>
-              <li><a><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
+              <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/about">About Us</router-link></a></li>
+              <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/about">Opening Hours</router-link></a></li>
+              <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/contact">Contact Us</router-link></a></li>
               <li><a><i class="fa fa-angle-double-right"></i>Getting here</a></li>
               <li><a><i class="fa fa-angle-double-right"></i>Places to go</a></li>
             </ul>
@@ -57,3 +57,8 @@
     }
 </script>
 
+<style>
+  .footer{
+    color: #000000;
+  }
+</style>

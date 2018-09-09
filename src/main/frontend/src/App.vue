@@ -11,12 +11,12 @@
 <script>
 // import Hello from './components/Hello'
 import Navbar from './components/Navbar'
-// import NavbarFooter from './components/NavbarFooter'
+import NavbarFooter from './components/NavbarFooter'
 
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar, NavbarFooter
   }
 }
 </script>

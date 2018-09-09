@@ -52,10 +52,4 @@
 </script>
 
 <style scoped>
-.about-title{
-  float: left;
-}
-  .about-content{
-    float:left;
-  }
 </style>
