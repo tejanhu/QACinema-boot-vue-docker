@@ -1,7 +1,7 @@
 <template>
   <b-navbar id="navbar" toggleable="md" type="light" variant="info">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand>QA Cinema</b-navbar-brand>
+    <b-navbar-brand><router-link to="/" exact-active-class="a">QA Cinema</router-link></b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-button variant="outline-light" size="lg"><router-link to="/" exact-active-class="a">Home</router-link></b-button>
@@ -14,7 +14,7 @@
         <b-dropdown variant="outline-light" size="lg" href="#" text="Info">
           <b-dropdown-item><router-link to="/info/about">About</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/contact">Contact</router-link></b-dropdown-item>
-          <b-dropdown-item><router-link to="/info/hours">Opening Hours</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/info/about">Opening Hours</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/bbfc">Film Classification</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/gethere">Getting Here</router-link></b-dropdown-item>
         </b-dropdown>

@@ -9,7 +9,7 @@
               <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/about">About Us</router-link></a></li>
               <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/about">Opening Hours</router-link></a></li>
               <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/contact">Contact Us</router-link></a></li>
-              <li><a><i class="fa fa-angle-double-right"></i>Getting here</a></li>
+              <li><a><i class="fa fa-angle-double-right"></i><router-link to="/info/gethere">Getting here</router-link></a></li>
               <li><a><i class="fa fa-angle-double-right"></i>Places to go</a></li>
             </ul>
           </div>
@@ -18,7 +18,7 @@
             <ul class="list-unstyled quick-links">
               <li><a><i class="fa fa-angle-double-right"></i><router-link to="/movie/soon">Current</router-link></a></li>
               <li><a><i class="fa fa-angle-double-right"></i>Future</a></li>
-              <li><a><i class="fa fa-angle-double-right" ></i>Classifications</a></li>
+              <li><a><i class="fa fa-angle-double-right" ></i><router-link to="/info/bbfc">Classifications</router-link></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4">
