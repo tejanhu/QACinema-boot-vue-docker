@@ -1,7 +1,7 @@
 <template>
   <b-navbar id="navbar" toggleable="md" type="light" variant="info">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand>QA Cinema</b-navbar-brand>
+    <b-navbar-brand><router-link to="/" exact-active-class="a">QA Cinema</router-link></b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-button variant="outline-light" size="lg"><router-link to="/" exact-active-class="a">Home</router-link></b-button>

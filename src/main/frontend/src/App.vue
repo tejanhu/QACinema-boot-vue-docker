@@ -2,16 +2,18 @@
   <div id="app" v-bind:style="bgc">
     <navbar></navbar>
     <router-view></router-view>
+    <navbarFooter></navbarFooter>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
+import NavbarFooter from './components/NavbarFooter'
 
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar, NavbarFooter
   }
 }
 </script>
