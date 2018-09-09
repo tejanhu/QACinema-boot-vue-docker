@@ -10,6 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Home from './components/homepage/Home'
 import About from './components/About'
 import Classification from './components/classification/Classification'
+import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
