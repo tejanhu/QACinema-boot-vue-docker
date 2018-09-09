@@ -1,18 +1,22 @@
 <template>
+
   <div id="app" v-bind:style="bgc">
+    <!--<hello></hello>-->
     <navbar></navbar>
-    <UpandComingMovies></UpandComingMovies>
+    <router-view></router-view>
+    <navbarFooter></navbarFooter>
   </div>
 </template>
 
 <script>
+// import Hello from './components/Hello'
 import Navbar from './components/Navbar'
-import UpandComingMovies from './components/new-releases/UpandComingMovies'
+import NavbarFooter from './components/NavbarFooter'
 
 export default {
   name: 'app',
   components: {
-    Navbar, UpandComingMovies
+    Navbar, NavbarFooter
   }
 }
 </script>

@@ -7,9 +7,12 @@ import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 import Home from './components/homepage/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+import UpandComingMovies from './components/new-releases/UpandComingMovies'
 import Classification from './components/classification/Classification'
+import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
@@ -20,6 +23,15 @@ const routes = [{
 }, {
   path: 'classification',
   component: Classification
+}, {
+  path: '/info/about',
+  component: About
+}, {
+  path: '/info/contact',
+  component: Contact
+}, {
+  path: '/movie/soon',
+  component: UpandComingMovies
 }]
 
 const router = new VueRouter({

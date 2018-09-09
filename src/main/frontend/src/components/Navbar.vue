@@ -12,6 +12,8 @@
 
         <b-button variant="outline-light" size="lg"><router-link to="/book">Bookings</router-link></b-button>
         <b-dropdown variant="outline-light" size="lg" href="#" text="Info">
+          <b-dropdown-item><router-link to="/info/about">About</router-link></b-dropdown-item>
+          <b-dropdown-item><router-link to="/info/contact">Contact</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/hours">Opening Hours</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/bbfc">Film Classification</router-link></b-dropdown-item>
           <b-dropdown-item><router-link to="/info/gethere">Getting Here</router-link></b-dropdown-item>
