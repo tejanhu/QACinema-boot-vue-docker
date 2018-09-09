@@ -24,6 +24,20 @@
               <h2 class="about-title">History</h2><br/>
               <h4 class="about-content"> QA Cinema was founded in the UK following the acquisition of the Warner Village Cinemas in 2003 and is part of the largest cinema group in Europe.</h4>
             </div>
+
+            <div className="col-sm-4">
+              <h2 class="about-title">Team members:</h2>
+
+              <ul class="about-content">
+                <li>Jarad</li>
+                <li>Kate</li>
+                <li>Benny</li>
+                <li>Hussein</li>
+                <li>Daryl</li>
+                <li>Liam</li>
+              </ul>
+            </div>
+
             <div className="col-sm-4">
               <h2 class="about-title">Opening Hours:</h2>
 
