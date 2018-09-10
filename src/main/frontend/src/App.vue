@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-  <h1>Spring Boot + Vue.js + Docker Example</h1>
-    <hello></hello>
+
+  <div id="app" v-bind:style="bgc">
+    <!--<hello></hello>-->
+    <navbar></navbar>
+    <router-view></router-view>
+    <navbarFooter></navbarFooter>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+// import Hello from './components/Hello'
+import Navbar from './components/Navbar'
+import NavbarFooter from './components/NavbarFooter'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Navbar, NavbarFooter
   }
 }
 </script>
 
 <style>
-#app {
+html {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #24a2b7;
 }
 </style>
